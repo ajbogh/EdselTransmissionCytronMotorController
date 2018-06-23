@@ -1,8 +1,3 @@
-//#include <Servo.h> 
-
-//SoftwareServo myservo;  // create servo object to control a servo 
-//Servo myservo;
-
 /*******************************************************************************
  * PIN CONFIGURATION                                                           *
  *******************************************************************************/
@@ -23,74 +18,47 @@ const int pinDir = 2;
 // Analog pins
 const int potPos = 5;
 
+/*******************************************************************************
+ * PRIVATE GLOBAL VARIABLES                                                     *
+ *******************************************************************************/
+
 // precision is about 3 units
-int limits[2] = {60,980};	// set limitations (min/max: 0->180)
+int limits[2] = {60,980};	// set limitations {min,max}
 
 int parkPos = 60; // 60-80 = 20
-int reversePos = 165; // 100-230 = 130 // -130 == 1/2"
-int neutralPos = 310; //240-380 = 140;
-int drivePos = 465; //590;
-int lowPos = 750;  //980; //460;
+int reversePos = 165; // 100-230 = 130 // ~130 == 1/2"
+int neutralPos = 310; //240-380 = 140
+int drivePos = 465; // 590 is max for drive
+int lowPos = 750;  //980 is max
 
-////int limits[2] = {1000,2000};    // set limitations (min/max: 1000->2000)
 int parkState = 0; // when 1 then the park button is pressed
 int reverseState = 0;
 int neutralState = 0;
 int driveState = 0;
 int lowState = 0;
 
-/*******************************************************************************
- * PRIVATE GLOBAL VARIABLES                                                     *
- *******************************************************************************/
-
-// Speed of the motor.
-static int iSpeed = 0;
-
-// Acceleration of the motor.
-static int iAcc = 1;
-
 int dir = 1;
-int currPos = 0;
-int reverseCount = 0;
 
 boolean targetHit = false;
 int lastStatePos = 0;
 
-void setup() 
-{ 
+void setup() { 
   Serial.begin(9600);
-
-        //myservo.attach(servoPin, limits[0], limits[1]);
         
-        // set to neutral on startup
-        // the button states will override this when the loop starts
-        //myservo.write(parkAngle);
-        //myservo.writeMicroseconds(parkAngle);
-
-        // 1500 middle
-        // 1000 left
-        // 2000 right
-        //servo.writeMicroseconds(1500);
-        
-    pinMode(parkPin, INPUT);
-    pinMode(reversePin, INPUT);
-    pinMode(neutralPin, INPUT);
-    pinMode(drivePin, INPUT);
-    pinMode(lowPin, INPUT);
-    
-    // Initialize the PWM and DIR pins as digital outputs.
-    pinMode(pinPwm, OUTPUT);
-    pinMode(pinDir, OUTPUT);
-    
-    pinMode(potPos, INPUT);
+  pinMode(parkPin, INPUT);
+  pinMode(reversePin, INPUT);
+  pinMode(neutralPin, INPUT);
+  pinMode(drivePin, INPUT);
+  pinMode(lowPin, INPUT);
+  
+  // Initialize the PWM and DIR pins as digital outputs.
+  pinMode(pinPwm, OUTPUT);
+  pinMode(pinDir, OUTPUT);
+  
+  pinMode(potPos, INPUT);
 }
 
-void moveMotor(int targetPos, int currentPos, boolean stopMotion){
-//  Serial.print("moveMotor");
-//  Serial.print(targetPos);
-//  Serial.print(" : ");
-//  Serial.print(currentPos);
-  
+void moveMotor(int targetPos, int currentPos, boolean stopMotion) {
   if(stopMotion){
     dir = 0;
   } else if(currentPos == targetPos || currentPos == targetPos + 1 || currentPos == targetPos - 1) {
@@ -125,7 +93,7 @@ void moveMotor(int targetPos, int currentPos, boolean stopMotion){
   Serial.println();
 }
 
-void checkBeforeMove(int positionTarget, int potPosition, boolean stopMotion){
+void checkBeforeMove(int positionTarget, int potPosition, boolean stopMotion) {
   if(lastStatePos != positionTarget){
     targetHit = false; 
   }
@@ -165,34 +133,4 @@ void loop()
   }
   
   delay(20);
-	// refresh angle
-//        int angle = myservo.read();
-//        parkState = digitalRead(parkPin);
-//        reverseState = digitalRead(reversePin);
-//        neutralState = digitalRead(neutralPin);
-//        driveState = digitalRead(drivePin);
-//        lowState = digitalRead(lowPin);
-        
-//        Serial.println("park: "+(String)parkState+" reverse: "+(String)reverseState+" neutral: "+(String)neutralState+" drive: "+(String)driveState+" low: "+(String)lowState);
-//
-//        if(parkState == HIGH){
-//          servoAngle = parkAngle;
-//        } else if(reverseState == HIGH){
-//          servoAngle = reverseAngle;
-//        } else if(neutralState == HIGH){
-//          servoAngle = neutralAngle;
-//        } else if(driveState == HIGH){
-//          servoAngle = driveAngle;
-//        } else if(lowState == LOW){
-//          //servoAngle = lowAngle;
-//        }
-//        if(servoAngle > -1){
-//          if(!servoAttached){
-//            // attaches the servo on pin to the servo object
-//	    myservo.attach(servoPin);
-//            servoAttached = true;
-//          }
-//          myservo.write(servoAngle);
-//          //myservo.writeMicroseconds(servoAngle);
-//        }
 } 
