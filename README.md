@@ -10,6 +10,6 @@ The Arduino is connected to USB car chargers which accept 12V input and produce 
 
 The USB chargers are each connected to one terminal of the Edsel push buttons with [Tap Splice connectors](https://www.homedepot.com/p/Gardner-Bender-22-10-AWG-Tap-Splice-Assortment-10-Pack-15-2210/202522123) to prevent the original wires from being cut.
 
-![Everything connected on test bench](https://raw.githubusercontent.com/ajbogh/EdselTransmissionCytronMotorController/master/Screenshot from 2018-06-22 22-26-47.jpg)
+![Everything connected on test bench](https://raw.githubusercontent.com/ajbogh/EdselTransmissionCytronMotorController/master/Screenshot%20from%202018-06-22 22-26-47.jpg)
 
 ![PWM Example](https://raw.githubusercontent.com/ajbogh/EdselTransmissionCytronMotorController/master/Selection_010.png)
