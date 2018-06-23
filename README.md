@@ -4,7 +4,7 @@ The included Arduino code allows an Arduino Uno to interact with a [Cytron Shiel
 
 The 115lbs of thrust is likely not necessary to shift the Edsel transmission, however it was chosen as a good starting point. It's unclear whether 25lbs of thrust would have been enough while parked on a hill.
 
-The motor is connected to an auxliary fuse panel with a 10A fuse.
+The motor is connected to an auxiliary fuse panel with a 10A fuse.
 
 The Arduino is connected to USB car chargers which accept 12V input and produce 5V output for the Arduino.
 
